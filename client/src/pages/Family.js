@@ -10,7 +10,7 @@ import { Input, FormBtn } from "../components/Form";
 
 class Family extends Component {
   state = {
-    books: [],
+    people: [],
     title: "",
     author: "",
     synopsis: ""
@@ -24,7 +24,7 @@ class Family extends Component {
 
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ people: res.data, title: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
 
@@ -92,16 +92,16 @@ class Family extends Component {
             <Jumbotron>
               <h1>The Family</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.people.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.people.map(person => (
+                  <ListItem key={person._id}>
+                    <Link to={"/books/" + person._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {person.title} by {person.author}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteBook(person._id)} />
                   </ListItem>
                 ))}
               </List>
