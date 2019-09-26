@@ -12,8 +12,8 @@ class Family extends Component {
   state = {
     people: [],
     title: "",
-    author: "",
-    synopsis: ""
+    author: ""
+    //synopsis: ""
   };
 
   componentDidMount() {
@@ -24,7 +24,8 @@ class Family extends Component {
 
     API.getBooks()
       .then(res =>
-        this.setState({ people: res.data, title: "", author: "", synopsis: "" })
+        //this.setState({ people: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ people: res.data, title: "", author: "" })
       )
       .catch(err => console.log(err));
 
@@ -48,8 +49,8 @@ class Family extends Component {
     if (this.state.title && this.state.author) {
       API.saveBook({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        author: this.state.author
+        //synopsis: this.state.synopsis
       })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
