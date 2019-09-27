@@ -1,6 +1,9 @@
 import React from "react";
 import useFormvalidation from "./useFormValidation";
 import validateAuth from "./validateAuth";
+import { Input, FormBtn } from "../../components/Form";
+import { Col, Row, Container } from "../../components/Grid";
+import Jumbotron from "../../components/Jumbotron";
 
 const INITIAL_STATE = {
     email: "",
@@ -9,77 +12,98 @@ const INITIAL_STATE = {
 
 function Contact(props) {
 
-  const { handleSubmit, handleChange, handleBlur, errors, isSubmitting, values } = 
+  const { handleSubmit, handleChange, handleBlur, errors, isSubmitting, cantSub, values } = 
         useFormvalidation(INITIAL_STATE, validateAuth)
 
   return (
-    <div className="container" style={getStyle_container}>
-      <h1>Register Here</h1>
+    <Container fluid>     
+    {/* <div className="container" style={getStyle_container}> */}
+      <Row>
+      <Col size="md-6">
+      <Jumbotron>
+          <h1>Register Here</h1>
+      </Jumbotron>          
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           onChange={handleChange}
           onBlur={handleBlur}
-          className={errors.email && 'error-input'}
+            //className={errors.email && 'error-input'}
           name="email"
           value={values.email}
           autoComplete="off"
           placeholder="Your email address"
-          style={errors.email ? getStyle_errorinput : getStyle_input}
-        />
-        {errors.email && <p style={getStyle_errortext}>{errors.email}</p>}
-        <input
+          style={errors.email ? {border: "1px solid red"} : {border: "1px solid #ced4da"}}
+          />
+        <div style={getStyle_errortext}>
+            {/* // report email errors  */}
+            {errors.email ? <p>{errors.email}</p> : <p>{'\u00A0'}</p>}
+        </div>
+        <Input
           onChange={handleChange}
           onBlur={handleBlur}
-          className={errors.password && 'error-input'}
+        //    className={errors.password && 'error-input'}
           name="password"
           type="password"
           value={values.password}
           placeholder="Choose a safe password"
-          style={errors.password ? getStyle_errorinput : getStyle_input}
+           style={errors.password ? {border: "1px solid red"} : {border: "1px solid #ced4da"}}
         />
-        {errors.password && <p style={getStyle_errortext}>{errors.password}</p>}
+        <div style={getStyle_errortext}>
+            {/* // report password errors  */}
+            {errors.password ? <p>{errors.password}</p> : <p>{'\u00A0'}</p>}
+        </div>
         <div>
-          <button disabled={isSubmitting} type="submit" style={getStyle_button} >Submit</button>
+          <FormBtn 
+                disabled={cantSub} 
+                type="submit" 
+                //style={getStyle_button} 
+            >
+            Submit
+          </FormBtn>
         </div>
       </form>
-    </div>
+      </Col>      
+      </Row>
+    {/* </div> */}
+    </Container>
   );
 }
 
-const getStyle_container = {
-    margin: "0 auto",
-    width: "500px",
-  }
+// const getStyle_container = {
+//     margin: "0 auto",
+//     width: "500px",
+//   }
 
-const getStyle_input = {
-    width: "100%",
-    color: "#000",
-    fontSize: "1.5rem",
-    padding: "0.25em",
-    marginTop: "0.5em",
-    border: "3px solid black",
-  }
+// const getStyle_input = {
+//     width: "100%",
+//     // color: "#000",
+//     // fontSize: "1.5rem",
+//     // padding: "0.25em",
+//     // marginTop: "0.5em",
+//     // border: "3px solid black",
+//   }
   
-  const getStyle_button = {
-    background: "orange",
-    fontSize: "1.3rem",
-    margin: "1em",
-    padding: "0.2em 0.5em",
-  }
+//   const getStyle_button = {
+//      background: "orange",
+//      fontSize: "1.3rem",
+//      margin: "1em",
+//      padding: "0.2em 0.5em",
+//   }
   
-  const getStyle_errorinput = {
-    width: "100%",
-    color: "#000",
-     border: "2px solid red",
-    borderRadius: "4px"
-  }
+//   const getStyle_errorinput = {
+//     margin: "0",
+//     width: "100%",
+//     color: "#000",
+//     border: "2px solid red",
+//     borderRadius: "4px"
+//   }
   
   const getStyle_errortext = {
-    margin: "0.25em 0 0 0",
+    margin: "0 0 0 0.25em",
     padding: "0",
     color: "red",
     fontStyle: "bold",
-    fontSize: "1.2rem",
+    fontSize: "1.0rem",
   }
   
 export default Contact;

@@ -4,18 +4,21 @@ function Contact_formvalidation(initialState, validate) {
     const [values, setValues] = React.useState(initialState);
     const [errors, setErrors] = React.useState({});
     const [isSubmitting, setSubmitting] = React.useState(false);
+    const [cantSub, setCantSub] = React.useState(true);
 
     React.useEffect(() => {
         if (isSubmitting) {
             const noErrors = Object.keys(errors).length === 0;
             if (noErrors) {
                 console.log("Authenticated!", values.email, values.password);
+                setCantSub(false);
                 setSubmitting(false);
             } else {
+                setCantSub(true);
                 setSubmitting(false);
             }
         }        
-    }, [errors, isSubmitting, values.password, values.email]);
+    }, [errors, isSubmitting, cantSub, values.password, values.email]);
 
     function handleChange(event) {
         setValues({
@@ -37,7 +40,7 @@ function Contact_formvalidation(initialState, validate) {
         setSubmitting(true);
       }
 
-    return { handleSubmit, handleChange, handleBlur, errors, isSubmitting, values }
+    return { handleSubmit, handleChange, handleBlur, errors, isSubmitting, cantSub, values }
 }
 
 export default Contact_formvalidation;
