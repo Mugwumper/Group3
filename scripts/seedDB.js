@@ -12,7 +12,7 @@ mongoose.connect(
 const familySeed = [
   {
     name: "Mr Rogers",
-    birthday: "1955-02-04"
+    birthday: "1928-03-20"
   },
   {
     name: "Jim Henson",

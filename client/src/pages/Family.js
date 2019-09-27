@@ -11,29 +11,27 @@ import { Input, FormBtn } from "../components/Form";
 class Family extends Component {
   state = {
     people: [],
-    title: "",
-    author: ""
-    //synopsis: ""
+    name: "",
+    birthday: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadFamily();
   }
 
-  loadBooks = () => {
+  loadFamily = () => {
 
-    API.getBooks()
+    API.getFamily()
       .then(res =>
         //this.setState({ people: res.data, title: "", author: "", synopsis: "" })
-        this.setState({ people: res.data, title: "", author: "" })
+        this.setState({ people: res.data, name: "", birthday: "" })
       )
       .catch(err => console.log(err));
-
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteFamily = id => {
+    API.deleteFamily(id)
+      .then(res => this.loadFamily())
       .catch(err => console.log(err));
   };
 
@@ -46,13 +44,12 @@ class Family extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author
-        //synopsis: this.state.synopsis
+    if (this.state.name && this.state.birthday) {
+      API.saveFamily({
+        name: this.state.name,
+        birthday: this.state.birthday
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadFamily())
         .catch(err => console.log(err));
     }
   };
@@ -68,12 +65,12 @@ class Family extends Component {
             <form>
               <Input
                 onChange={this.handleInputChange}
-                name="title"
+                name="name"
                 placeholder="Name (required)"
               />
               <Input
                 onChange={this.handleInputChange}
-                name="author"
+                name="birthday"
                 placeholder="Birthday (required)"
               />
               {/* <TextArea
@@ -82,7 +79,7 @@ class Family extends Component {
                 placeholder="Synopsis (Optional)"
               /> */}
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.name && this.state.birthday)}
                 onClick={this.handleFormSubmit}
               >
                 Add Family Member
@@ -97,12 +94,12 @@ class Family extends Component {
               <List>
                 {this.state.people.map(person => (
                   <ListItem key={person._id}>
-                    <Link to={"/books/" + person._id}>
+                    <Link to={"/family/" + person._id}>
                       <strong>
-                        {person.title} by {person.author}
+                        {person.name} - {person.birthday}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(person._id)} />
+                    <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
                   </ListItem>
                 ))}
               </List>
