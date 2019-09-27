@@ -12,7 +12,6 @@ class Detail extends Component {
   // e.g. http://localhost:3000/family/:id
   // The family id for this route can be accessed using this.props.match.params.id
 
-
   render() {
     return (
       <Container fluid>
