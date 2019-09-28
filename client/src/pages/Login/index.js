@@ -23,7 +23,7 @@ function Contact(props) {
       <Jumbotron>
           <h1>Register Here</h1>
       </Jumbotron>          
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <Input
           onChange={handleChange}
           onBlur={handleBlur}
@@ -32,7 +32,7 @@ function Contact(props) {
           value={values.email}
           autoComplete="off"
           placeholder="Your email address"
-          style={errors.email ? {border: "1px solid red"} : {border: "1px solid #ced4da"}}
+          style={errors.email ? {border: "1px solid red", marginBottom: "0rem"} : {border: "1px solid #ced4da", marginBottom: "0rem"}}
           />
         <div style={getStyle_errortext}>
             {/* // report email errors  */}
