@@ -7,8 +7,10 @@ function Contact_formvalidation(initialState, validate) {
     const [cantSub, setCantSub] = React.useState(true);
     React.useEffect(() => {
         // this fires on every keystroke within the input fields
-        console.log("React.useEffect");
-        const noErrors = Object.keys(errors).length === 0;
+        //console.log("React.useEffect");
+        const eE = Boolean(errors.email);
+        const eP = Boolean(errors.password);
+        const noErrors = (!eE && !eP);
         const hasValues = values.email && values.password;
         if (isSubmitting) {
             if (noErrors) {
@@ -30,13 +32,18 @@ function Contact_formvalidation(initialState, validate) {
         setValues({
             ...values,
             [event.target.name]: event.target.value
-        }) 
+        }); 
+        /// if we have errors already, check to see if they are cleared
+        const hasErrors = (errors.email || errors.password);
+        if (hasErrors) {
+            const validationErrors = validate(values);
+            setErrors(validationErrors);
+        } 
     }
 
     function handleBlur() {
         const validationErrors = validate(values);
         setErrors(validationErrors);
-
     }
 
     function handleSubmit(event) {
