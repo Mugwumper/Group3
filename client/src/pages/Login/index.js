@@ -21,7 +21,7 @@ function Contact(props) {
       <Row>
       <Col size="md-6">
       <Jumbotron>
-          <h1>Register Here</h1>
+          <h1>Register / Login</h1>
       </Jumbotron>          
       <form onSubmit={handleSubmit} >
         <Input

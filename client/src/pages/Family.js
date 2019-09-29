@@ -106,11 +106,23 @@ class Family extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            <div style={getStyle_CollectEventsButton}>
+              <FormBtn 
+                //disbled={}
+                type="submit" 
+              >
+                Collect Events
+              </FormBtn>
+            </div>
           </Col>
         </Row>
       </Container>
     );
   }
 }
+
+const getStyle_CollectEventsButton = {
+  margin: "1em 0 0 0.25em",
+ }
 
 export default Family;
