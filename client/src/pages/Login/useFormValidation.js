@@ -1,5 +1,9 @@
 import React from "react";
 
+// this was taken from https://www.youtube.com/watch?v=8yo44xN7-nQ
+// the version here is improved upon with regard to handling errors 
+// and the state of the button enable.
+
 function Contact_formvalidation(initialState, validate) {
     const [values, setValues] = React.useState(initialState);
     const [errors, setErrors] = React.useState({});

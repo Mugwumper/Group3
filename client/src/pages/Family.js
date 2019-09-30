@@ -86,34 +86,40 @@ class Family extends Component {
               </FormBtn>
             </form>
           </Col>
+
+
+
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>The Family</h1>
             </Jumbotron>
-            {this.state.people.length ? (
-              <List>
-                {this.state.people.map(person => (
-                  <ListItem key={person._id}>
-                    <Link to={"/family/" + person._id}>
-                      <strong>
-                        {person.name} - {person.birthday}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-            <div style={getStyle_CollectEventsButton}>
-              <FormBtn 
-                //disbled={}
-                type="submit" 
-              >
-                Collect Events
-              </FormBtn>
-            </div>
+            <form>
+
+              {this.state.people.length ? (
+                <List>
+                  {this.state.people.map(person => (
+                    <ListItem key={person._id}>
+                      <Link to={"/family/" + person._id}>
+                        <strong>
+                          {person.name} - {person.birthday}
+                        </strong>
+                      </Link>
+                      <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+              <div style={getStyle_CollectEventsButton}>
+                <FormBtn 
+                  //disbled={}
+                  type="submit" 
+                >
+                  Collect Events
+                </FormBtn>
+              </div>
+            </form>
           </Col>
         </Row>
       </Container>

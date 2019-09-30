@@ -6,7 +6,7 @@ var family_Schema = new Schema({
   name:      { type: String, required: true, unique: true },
   birthday:  { type: String,   required: true },
   // link to the Events collection
-  //events:     { type: [{ type: Schema.Types.ObjectId, ref: 'Events'}]}
+  events:     { type: [{ type: Schema.Types.ObjectId, ref: 'Events'}]}
 });
 
 var Family = mongoose.model("Family", family_Schema);

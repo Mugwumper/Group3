@@ -7,10 +7,13 @@ const PORT = process.env.PORT || 3001;
 
 /// if warnings are an issue consider invoking npm-update-all as spelled out here: https://www.npmjs.com/package/npm-update-all
 
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+var auth = require('./routes/auth');
+app.use('/api/auth', auth);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
