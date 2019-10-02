@@ -16,5 +16,9 @@ export default {
   // Saves a book to the database
   saveFamily: function(familyData) {
     return axios.post("/api/family", familyData);
+  },
+  scrapeFamily: function(familyList) {
+    return axios.post("/api/family/scrape", familyList);
   }
+
 };

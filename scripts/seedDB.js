@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 // This file empties the Family collection and inserts the people below
-// In order to initially populate the database, run the following command at the project root: `npm run seed`.
+// In order to initially populate the database, 
+// run the following command at the project root: `npm run seed`.
 
 mongoose.connect(
   process.env.MONGODB_URI ||

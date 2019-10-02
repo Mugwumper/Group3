@@ -23,7 +23,6 @@ class Family extends Component {
 
     API.getFamily()
       .then(res =>
-        //this.setState({ people: res.data, title: "", author: "", synopsis: "" })
         this.setState({ people: res.data, name: "", birthday: "" })
       )
       .catch(err => console.log(err));
@@ -52,6 +51,22 @@ class Family extends Component {
         .then(res => this.loadFamily())
         .catch(err => console.log(err));
     }
+  };
+
+  handleSubmit2 = event => {
+    event.preventDefault();
+    // let l = [];
+    // console.log("crappy submit");
+    // if (this.state.people.length > 0) {
+    //   this.state.people.map(person => (
+    //     l.push(person._id)
+    //   ))
+    // }
+    // console.log(l);
+
+    API.scrapeFamily()
+    .then(res => this.loadFamily())
+    .catch(err => console.log(err));
   };
 
   render() {
@@ -87,14 +102,11 @@ class Family extends Component {
             </form>
           </Col>
 
-
-
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>The Family</h1>
             </Jumbotron>
-            <form>
-
+            <form onSubmit={this.handleSubmit2}>
               {this.state.people.length ? (
                 <List>
                   {this.state.people.map(person => (
@@ -113,7 +125,8 @@ class Family extends Component {
               )}
               <div style={getStyle_CollectEventsButton}>
                 <FormBtn 
-                  //disbled={}
+                  //disbled={this.state.people.length === 0}
+                  disbled="false"
                   type="submit" 
                 >
                   Collect Events
@@ -126,6 +139,7 @@ class Family extends Component {
     );
   }
 }
+
 
 const getStyle_CollectEventsButton = {
   margin: "1em 0 0 0.25em",

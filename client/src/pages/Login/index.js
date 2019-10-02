@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 function Contact(props) {
 
-  const { handleSubmit, handleChange, handleBlur, errors, isSubmitting, cantSub, values } = 
+  const { handleSubmit, handleChange, handleBlur, errors, cantSub, values } = 
         useFormvalidation(INITIAL_STATE, validateAuth)
 
   return (
