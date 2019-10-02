@@ -8,8 +8,7 @@ module.exports = {
   scraper: function queryFam(req, res) {
       db.Family.find({})
       .then(data => { 
-        console.log(data);
-        
+        console.log(data);      
 
 
         var promises = data.map(item => {
@@ -18,9 +17,8 @@ module.exports = {
           })
         })
 
-        Promise.all(promises).then(results => console.log(results)); 
+        Promise.all(promises).then(results => res.json(results)); 
 
-        res.json(data);
       })
       .catch(err => 
         res.json(err)
@@ -38,38 +36,40 @@ function scrape(item) {
     var $ = cheerio.load(html);
     const scrapeArray = [];
     $("article").each(function(i, element) {
+      if (i < 5) {
 
-      var result = {}; // initialize result each time as {}
+        var result = {}; // initialize result each time as {}
 
-      // pick apart the html to get title, summary and link field values
-      summary = ""
-      if ($(this).find("ul").length) {
-        summary = $(this).find("li").first().text();
-      } else {
-        summary = $(this).find("p").text();
-      };
-
-      result.userID = item._id;
-      result.name = item.name;
-      result.birthday = item.birthday;
-      result.title = $(this).find("h2").text();
-      result.summary = summary;
-      result.link = "https://www.nytimes.com" + $(this).find("a").attr("href");
-
-      scrapeArray.push(result);
-
-      // save article to database
-      // var entry = new db.Events(result);
-      // entry.save(function(err, doc) {
-      //   if (err) {
-      //     console.log(err);
-      //   }
-      //   else {
-      //     console.log(doc);
-      //   }
-      // });
-
-    });
+        // pick apart the html to get title, summary and link field values
+        summary = ""
+        if ($(this).find("ul").length) {
+          summary = $(this).find("li").first().text();
+        } else {
+          summary = $(this).find("p").text();
+        };
+  
+        result.userID = item._id;
+        result.name = item.name;
+        result.birthday = item.birthday;
+        result.title = $(this).find("h2").text();
+        result.summary = summary;
+        result.link = "https://www.nytimes.com" + $(this).find("a").attr("href");
+  
+        scrapeArray.push(result);
+  
+        // save article to database
+        // var entry = new db.Events(result);
+        // entry.save(function(err, doc) {
+        //   if (err) {
+        //     console.log(err);
+        //   }
+        //   else {
+        //     console.log(doc);
+        //   }
+        // });
+      }
+  
+      }); // end of for each
     return resolve(scrapeArray);
   });  // end of Request
 
