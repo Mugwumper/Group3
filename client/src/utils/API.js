@@ -19,6 +19,13 @@ export default {
   },
   scrapeFamily: function(familyList) {
     return axios.post("/api/family/scrape", familyList);
+  },
+  toggleIsSaved: function(event) {
+    console.log("API sees toggleIsSaved");
+    console.log(event);
+    return axios.put("/api/events/toggle", event);
   }
+
+
 
 };
