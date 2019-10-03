@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 function Contact(props) {
 
-  const { handleSubmit, handleChange, handleBlur, errors, isSubmitting, cantSub, values } = 
+  const { handleSubmit, handleChange, handleBlur, errors, cantSub, values } = 
         useFormvalidation(INITIAL_STATE, validateAuth)
 
   return (
@@ -21,7 +21,7 @@ function Contact(props) {
       <Row>
       <Col size="md-6">
       <Jumbotron>
-          <h1>Register Here</h1>
+          <h1>Register / Login</h1>
       </Jumbotron>          
       <form onSubmit={handleSubmit} >
         <Input

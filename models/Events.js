@@ -8,6 +8,8 @@ var eventSchema = new Schema({
   summary:  { type: String },
   byLine:   { type: String },
   isSaved:  { type: Boolean, default: false },
+  //name:     { type: String },
+  birthday: { type: String },
 });
 
 var Events = mongoose.model("Events", eventSchema);

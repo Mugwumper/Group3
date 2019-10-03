@@ -1,0 +1,11 @@
+
+.event-saved {
+    /* background: rgb(227, 243, 227); */
+    font-weight: normal;
+}
+
+.event-ignored {
+    background: rgb(240, 230, 226);
+    font-weight: normal;
+
+}

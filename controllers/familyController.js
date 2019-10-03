@@ -5,6 +5,7 @@ module.exports = {
   findAll: function(req, res) {
     db.Family
       .find(req.query)
+      .populate("events")
       .sort({ birthday: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
