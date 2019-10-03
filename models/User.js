@@ -11,7 +11,10 @@ var UserSchema = new Schema({
   password: {
         type: String,
         required: true
-    }
+    },
+  family:    { 
+        type: [{ type: Schema.Types.ObjectId, ref: 'Family'}]}
+ 
 });
 
 UserSchema.pre('save', function (next) {
