@@ -1,0 +1,8 @@
+
+.event-saved {
+    background: lightgreen;
+}
+
+.event-ignored {
+    background: lightsalmon;
+}
