@@ -20,7 +20,6 @@ class Family extends Component {
   }
 
   loadFamily = () => {
-
     API.getFamily()
       .then(res =>
         this.setState({ people: res.data, name: "", birthday: "" })
