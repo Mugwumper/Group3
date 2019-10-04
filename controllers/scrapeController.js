@@ -10,7 +10,7 @@ module.exports = {
 
         var promises = data.map(item => {
           return scrape(item).then( results => {
-              return results;
+            return results;
           })
         })
 

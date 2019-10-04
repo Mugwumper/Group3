@@ -85,7 +85,7 @@ class Family extends Component {
               <Input
                 onChange={this.handleInputChange}
                 name="birthday"
-                placeholder="Birthday (required)"
+                placeholder="Birthday in ISO 8601 date format (required)"
               />
               {/* <TextArea
                 onChange={this.handleInputChange}
