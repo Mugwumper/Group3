@@ -5,7 +5,6 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-//import { Input, TextArea, FormBtn } from "../components/Form";
 import { Input, FormBtn } from "../components/Form";
 
 class Family extends Component {
@@ -52,17 +51,8 @@ class Family extends Component {
     }
   };
 
-  handleSubmit2 = event => {
+  collectEvents = event => {
     event.preventDefault();
-    // let l = [];
-    // console.log("crappy submit");
-    // if (this.state.people.length > 0) {
-    //   this.state.people.map(person => (
-    //     l.push(person._id)
-    //   ))
-    // }
-    // console.log(l);
-
     API.scrapeFamily()
     .then(res => this.loadFamily())
     .catch(err => console.log(err));
@@ -105,7 +95,7 @@ class Family extends Component {
             <Jumbotron>
               <h1>The Family</h1>
             </Jumbotron>
-            <form onSubmit={this.handleSubmit2}>
+            <form onSubmit={this.collectEvents}>
               {this.state.people.length ? (
                 <List>
                   {this.state.people.map(person => (

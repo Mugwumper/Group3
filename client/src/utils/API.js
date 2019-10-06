@@ -17,6 +17,9 @@ export default {
   saveFamily: function(familyData) {
     return axios.post("/api/family", familyData);
   },
+  login: function(userData) {
+    return axios.post("/api/family/login", userData);
+  },
   scrapeFamily: function(familyList) {
     return axios.post("/api/family/scrape", familyList);
   },

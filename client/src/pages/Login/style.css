@@ -25,3 +25,11 @@ a {
     height: 37px;
     display: inline-block;
    }
+
+   .errorText {
+    margin: 0 0 0 0.25em;
+    padding: 0;
+    color: red;
+    font-style: bold;
+    font-size: 1.0rem;
+  }

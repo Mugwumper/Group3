@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const familyController = require("../../controllers/familyController");
 const scrapeController = require("../../controllers/scrapeController");
+const userController = require("../../controllers/userController");
 
 // Matches with "/api/family"
 router.route("/")
@@ -19,5 +20,9 @@ router
   .route("/scrape")
   .post(scrapeController.scraper);
 
+// Matches with "/api/family/login"
+router
+  .route("/login")
+  .post(userController.login);
 
 module.exports = router;
