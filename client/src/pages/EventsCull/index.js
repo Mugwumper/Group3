@@ -35,8 +35,9 @@ class Report1 extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>The Events</h1>
+            <Jumbotron>              
+              <h1>Cull Events</h1>
+              <p>Select events to include</p>
             </Jumbotron>
             {this.state.people.length ? (
               <EList>
@@ -48,13 +49,10 @@ class Report1 extends Component {
                     <EList>
 
                       {person.events.map(event => (
-                        <EListItem 
+                        <div className={event.isSaved ? "list-group-item list-group-item-action list-group-item-success" : "list-group-item list-group-item-action list-group-item-light"}
                           key={event._id}
                           >
                           <div
-                            className={
-                              event.isSaved ? "event-saved" : "event-ignored"
-                            }
                             onClick={() => this.toggleIsSaved(event)}
                           >
                             <input type="checkbox"
@@ -62,7 +60,7 @@ class Report1 extends Component {
                             /> 
                             {event.title} - {event.summary}
                           </div>
-                        </EListItem>
+                        </div>
                       ))}
                     </EList>
                   </EListItem>

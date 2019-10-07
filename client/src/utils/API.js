@@ -27,7 +27,16 @@ export default {
     //console.log("API sees toggleIsSaved");
     //console.log(event);
     return axios.put("/api/events/toggle", event);
+  },
+  getEvents: function () {
+    return axios.get("/api/events/issaved");
+  },
+  getAnswerKey: function() {
+    return axios.get("/api/events/answerkey");
   }
+
+
+
 
 
 

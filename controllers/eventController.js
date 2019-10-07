@@ -8,6 +8,19 @@ module.exports = {
       .findOneAndUpdate({ _id: req.body._id }, {isSaved: req.body.isSaved})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));  
-  } 
+  },
+  getAll: function(req, res) {
+     db.Events
+     .find({isSaved: "true"})
+     .then(dbModel => res.json(dbModel))
+     .catch(err => res.status(422).json(err));
+  },
+  getAnswerKey: function(req, res) {
+    db.Family
+    .find(req.query)
+    //.find({isSaved: true})
+    .sort({ birthday: -1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  }
 }
-
