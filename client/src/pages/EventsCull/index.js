@@ -47,9 +47,11 @@ class Report1 extends Component {
                       {person.name} - {person.birthday}
                     </strong>
                     <EList>
-
                       {person.events.map(event => (
-                        <div className={event.isSaved ? "list-group-item list-group-item-action list-group-item-success" : "list-group-item list-group-item-action list-group-item-light"}
+                        <div className={
+                            event.isSaved ? 
+                              "list-group-item list-group-item-action list-group-flush list-group-item-success" : 
+                              "list-group-item list-group-item-action list-group-flush list-group-item-light"}
                           key={event._id}
                           >
                           <div

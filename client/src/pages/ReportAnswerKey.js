@@ -5,7 +5,7 @@ import { EList, EListItem } from "../components/EventList";
 import API from "../utils/API";
 import "../style.css";
 
-class Report1 extends Component {
+class ReportAnswerKey extends Component {
   state = {
     people: []
   };
@@ -58,4 +58,4 @@ class Report1 extends Component {
   }
 }
 
-export default Report1;
+export default ReportAnswerKey;

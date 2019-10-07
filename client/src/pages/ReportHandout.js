@@ -5,7 +5,7 @@ import { EList, EListItem } from "../components/EventList";
 import API from "../utils/API";
 import "../style.css";
 
-class Report_Handout extends Component {
+class ReportHandout extends Component {
   state = {
     events: []
   };
@@ -48,4 +48,4 @@ class Report_Handout extends Component {
   }
 }
 
-export default Report_Handout;
+export default ReportHandout;
