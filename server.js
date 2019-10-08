@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const passport = require("passport");
 
 
 const app = express();
@@ -17,11 +16,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-//setting passport middleware
-app.use(passport.initialize());
-
-require("./config/passport")(passport);
 
 // Add routes, both API and view
 app.use(routes);

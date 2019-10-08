@@ -20,39 +20,7 @@ function Contact_formvalidation(initialState, validate) {
     if (isSubmitting) {
       if (noErrors) {
         console.log("Authenticated!", values.email, values.password);
-        API.login({
-          email: values.email,
-          password: values.password
-        })
-          .then(res => {
-            if ((res.status === 200) && (res.data == null)) {
-                // prompt to create a new user TODO
-                
-                API.NewUser({
-                    email: values.email,
-                    password: values.password
-                })
-                .then(res => {
-                    console.log(res.data);
-                    // use router to get us to the next screen
-                })
-                .catch({
-                    // bark about whatever is wrong and hold here
-                })
-            } else {
-                if (res.data.password === values.password) {
-                    console.log("valid");
-                    // use router to get us to the next screen
-                } else {
-                    console.log(
-                        "NOT valid: " + res.data.password + "<>" + values.password
-                    );
-                    // bark about invalid password and hold here
-                }
-            }
-          })
-          .catch(err => console.log(err));
-
+        sendUserToServer();
         setSubmitting(false);
       } else {
         setSubmitting(false);
@@ -65,6 +33,46 @@ function Contact_formvalidation(initialState, validate) {
       }
     }
   }, [errors, isSubmitting, cantSub, values.password, values.email]);
+
+  function sendUserToServer() {
+    API.login({
+      email: values.email,
+      password: values.password
+    })
+      .then(res => {
+        if (res.status === 200 && res.data[0] == null) {
+          // prompt to create a new user TODO
+
+          API.NewUser({
+            email: values.email,
+            password: values.password
+          })
+            .then(res => {
+              console.log(res.data);
+              // use router to get us to the next screen
+            })
+            .catch({
+              // bark about whatever is wrong and hold here
+            });
+        } else {
+          //console.log(res.data);
+          // res is not null and no error was returned...
+          if (res.data[0].password === values.password) {
+            console.log("valid");
+            API.setUser({id: res.data[0]._id});
+            // use router to get us to the next screen
+          } else {
+            console.log(
+              "NOT valid: " + res.data[0].password + "<>" + values.password
+            );
+            // bark about invalid password and hold here
+          }
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+
 
   function handleChange(event) {
     setValues({
@@ -91,8 +99,16 @@ function Contact_formvalidation(initialState, validate) {
     setSubmitting(true);
   }
 
+  function test1() {
+    //console.log("test1");
+     values.email = 'a1@b.com';
+     values.password = "1234567";
+     setSubmitting(true);
+  }
+
   return {
     handleSubmit,
+    test1,
     handleChange,
     handleBlur,
     errors,

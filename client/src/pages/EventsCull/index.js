@@ -18,7 +18,7 @@ class Report1 extends Component {
 
   loadFamily = () => {
     API.getFamily()
-      .then(res => this.setState({ people: res.data, name: "", birthday: "" }))
+      .then(res => this.setState({ people: res.data }))
       .catch(err => console.log(err));
   };
 

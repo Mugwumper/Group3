@@ -23,6 +23,15 @@ router
 // Matches with "/api/family/login"
 router
   .route("/login")
-  .post(userController.login);
+  .post(userController.findByEmail);
+
+// Matches with "/api/family/newuser"
+router
+  .route("/newuser")
+  .post(userController.create);
+router
+  .route("/setuser")
+  .post(userController.setuser);
+
 
 module.exports = router;

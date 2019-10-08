@@ -1,13 +1,31 @@
 const db = require("../models");
 
+var currentUserId = "";
+
 module.exports = {
-  login: function(req, res) {
-    //console.log("login called");
-    //console.log(req.body);
+  findByEmail: function(req, res) {
+    console.log("userController.findByEmail called");
+    console.log(req.body);
     db.Users
-    .findOne({ email: req.body.email })
+    .find({ email: req.body.email })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
-    }
+  },
+  create: function(req, res) {
+    console.log("userController.create called");
+    console.log(req.body);
+    db.Users
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  setuser: function(req, res) {
+    console.log("userController.setuser called");
+    console.log(req.body);
+    console.log(req.body.id);
+    currentUserId = req.body.id;
+  },
+  
+  
 }
 

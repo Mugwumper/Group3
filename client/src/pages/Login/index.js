@@ -11,11 +11,10 @@ const INITIAL_STATE = {
   password: ""
 };
 
-
-
 function Contact(props) {
   const {
     handleSubmit,
+    test1,
     handleChange,
     handleBlur,
     errors,
@@ -30,7 +29,7 @@ function Contact(props) {
           <Jumbotron>
             <h1>Register / Login</h1>
           </Jumbotron>
-          <form onSubmit={handleSubmit}>
+          <form>
             <Input
               onChange={handleChange}
               onBlur={handleBlur}
@@ -70,6 +69,7 @@ function Contact(props) {
                 Submit
               </FormBtn>
             </div>
+            <button type="button" onClick={test1}>test1</button>
           </form>
         </Col>
       </Row>

@@ -18,7 +18,17 @@ export default {
     return axios.post("/api/family", familyData);
   },
   login: function(userData) {
+    console.log("API sees login...");
+    console.log(userData); 
     return axios.post("/api/family/login", userData);
+  },
+  setUser: function(userData) {
+    console.log("API sees setUser...");
+    console.log(userData); 
+    return axios.post("/api/family/setuser", userData);
+  },
+  newUser: function(userData) {
+    return axios.post("/api/family/newuser", userData);
   },
   scrapeFamily: function(familyList) {
     return axios.post("/api/family/scrape", familyList);

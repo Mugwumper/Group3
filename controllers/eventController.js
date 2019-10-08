@@ -18,7 +18,6 @@ module.exports = {
   getAnswerKey: function(req, res) {
     db.Family
     .find(req.query)
-    //.find({isSaved: true})
     .sort({ birthday: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
