@@ -30,7 +30,8 @@ module.exports = {
     console.log("userController.getuserplus called");
     if (currentUserId) {
       db.Users
-      .find({ _id: ObjectId(currentUserId) })
+      .find({ _id: ObjectId(currentUserId) }, 
+        'family events isSaved title summary link name birthday')
       .then(dbModel => res.json(dbModel))
       //.then(dbModel => this.clearRes(dbModel))
       .catch(err => res.status(422).json(err))
