@@ -1,0 +1,31 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    z-index: 10;
+    -webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
+}
+
+.page__content-container {
+    /* margin: 100px auto; */
+    width: 100%;
+    padding: 5px;
+  }
+
+h1 {
+    
+}
+
+.event-saved {
+    /* background: rgb(227, 243, 227); */
+    font-weight: normal;
+}
+
+.event-ignored {
+    background: rgb(240, 230, 226);
+    font-weight: normal;
+}

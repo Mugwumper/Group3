@@ -14,7 +14,7 @@ export function CheckBox(props) { // unused
 export function EList({ children }) {
   return (
     <div className="list-overflow-container">
-      <ul className="list-group">{children}</ul>
+      <ul className="list-group list-group-flush">{children}</ul>
     </div>
   );
 }

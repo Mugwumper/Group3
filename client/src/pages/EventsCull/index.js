@@ -17,8 +17,10 @@ class Report1 extends Component {
   }
 
   loadFamily = () => {
-    API.getFamily()
-      .then(res => this.setState({ people: res.data, name: "", birthday: "" }))
+    API.getUserPlus()
+      .then(res =>
+        this.setState({ people: res.data[0].family })
+    )
       .catch(err => console.log(err));
   };
 
@@ -35,8 +37,9 @@ class Report1 extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>The Events</h1>
+            <Jumbotron>              
+              <h1>Cull Events</h1>
+              <p>Select events to include</p>
             </Jumbotron>
             {this.state.people.length ? (
               <EList>
@@ -46,15 +49,14 @@ class Report1 extends Component {
                       {person.name} - {person.birthday}
                     </strong>
                     <EList>
-
                       {person.events.map(event => (
-                        <EListItem 
+                        <div className={
+                            event.isSaved ? 
+                              "list-group-item list-group-item-action list-group-flush list-group-item-success" : 
+                              "list-group-item list-group-item-action list-group-flush list-group-item-light"}
                           key={event._id}
                           >
                           <div
-                            className={
-                              event.isSaved ? "event-saved" : "event-ignored"
-                            }
                             onClick={() => this.toggleIsSaved(event)}
                           >
                             <input type="checkbox"
@@ -62,7 +64,7 @@ class Report1 extends Component {
                             /> 
                             {event.title} - {event.summary}
                           </div>
-                        </EListItem>
+                        </div>
                       ))}
                     </EList>
                   </EListItem>

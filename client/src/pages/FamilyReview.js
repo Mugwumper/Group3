@@ -5,12 +5,12 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-//import { Input, TextArea, FormBtn } from "../components/Form";
-import { Input, FormBtn } from "../components/Form";
+import { FormBtn } from "../components/Form";
 
-class Family extends Component {
+class FamilyReview extends Component {
   state = {
     people: [],
+    user: [], 
     name: "",
     birthday: ""
   };
@@ -20,10 +20,14 @@ class Family extends Component {
   }
 
   loadFamily = () => {
-    API.getFamily()
+    API.getUserPlus()
+//    API.getFamily()
       .then(res =>
-        this.setState({ people: res.data, name: "", birthday: "" })
-      )
+//        console.log(res) 
+//        console.log(res.data[0].family) 
+        this.setState({ people: res.data[0].family })
+//this.setState({ people: res.data, name: "", birthday: "" })
+    )
       .catch(err => console.log(err));
   };
 
@@ -33,36 +37,8 @@ class Family extends Component {
       .catch(err => console.log(err));
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
+  collectEvents = event => {
     event.preventDefault();
-    if (this.state.name && this.state.birthday) {
-      API.saveFamily({
-        name: this.state.name,
-        birthday: this.state.birthday
-      })
-        .then(res => this.loadFamily())
-        .catch(err => console.log(err));
-    }
-  };
-
-  handleSubmit2 = event => {
-    event.preventDefault();
-    // let l = [];
-    // console.log("crappy submit");
-    // if (this.state.people.length > 0) {
-    //   this.state.people.map(person => (
-    //     l.push(person._id)
-    //   ))
-    // }
-    // console.log(l);
-
     API.scrapeFamily()
     .then(res => this.loadFamily())
     .catch(err => console.log(err));
@@ -72,40 +48,12 @@ class Family extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Add Family Members</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                onChange={this.handleInputChange}
-                name="name"
-                placeholder="Name (required)"
-              />
-              <Input
-                onChange={this.handleInputChange}
-                name="birthday"
-                placeholder="Birthday (required)"
-              />
-              {/* <TextArea
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              /> */}
-              <FormBtn
-                disabled={!(this.state.name && this.state.birthday)}
-                onClick={this.handleFormSubmit}
-              >
-                Add Family Member
-              </FormBtn>
-            </form>
-          </Col>
-
           <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>The Family</h1>
+              <p>Review List and Collect Events</p>
             </Jumbotron>
-            <form onSubmit={this.handleSubmit2}>
+            <form onSubmit={this.collectEvents}>
               {this.state.people.length ? (
                 <List>
                   {this.state.people.map(person => (
@@ -144,4 +92,4 @@ const getStyle_CollectEventsButton = {
   margin: "1em 0 0 0.25em",
  }
 
-export default Family;
+export default FamilyReview;
