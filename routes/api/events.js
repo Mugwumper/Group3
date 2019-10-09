@@ -8,9 +8,9 @@ router.route("/toggle")
 // Matches with "/api/events/issaved"
 router.route("/issaved")
   .get(eventController.getAll);
-module.exports = router;
 
 // Matches with "/api/events/answerkey"
 router.route("/answerkey")
   .get(eventController.getAnswerKey);
+
 module.exports = router;

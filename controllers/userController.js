@@ -1,6 +1,7 @@
 const db = require("../models");
+const ObjectId = require('mongodb').ObjectID;
 
-var currentUserId = "";
+var currentUserId = "5d98c9ab073a76c86a562654";
 
 module.exports = {
   findByEmail: function(req, res) {
@@ -25,7 +26,21 @@ module.exports = {
     console.log(req.body.id);
     currentUserId = req.body.id;
   },
-  
-  
+  getuserplus: function(req, res) {
+    console.log("userController.getuserplus called");
+    if (currentUserId) {
+      db.Users
+      .find({ _id: ObjectId(currentUserId) })
+      .then(dbModel => res.json(dbModel))
+      //.then(dbModel => this.clearRes(dbModel))
+      .catch(err => res.status(422).json(err))
+    } else {
+      res = "unable to function without defined currectUserId";
+    }
+  }
+}
+
+function cleanRes(res) {
+  return json(res);  
 }
 

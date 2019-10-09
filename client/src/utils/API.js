@@ -43,7 +43,11 @@ export default {
   },
   getAnswerKey: function() {
     return axios.get("/api/events/answerkey");
+  },
+  getUserPlus: function() {
+    return axios.get("/api/users/getuserplus");
   }
+  
 
 
 

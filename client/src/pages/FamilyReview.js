@@ -10,6 +10,7 @@ import { FormBtn } from "../components/Form";
 class FamilyReview extends Component {
   state = {
     people: [],
+    user: [], 
     name: "",
     birthday: ""
   };
@@ -19,10 +20,14 @@ class FamilyReview extends Component {
   }
 
   loadFamily = () => {
-    API.getFamily()
+    API.getUserPlus()
+//    API.getFamily()
       .then(res =>
-        this.setState({ people: res.data, name: "", birthday: "" })
-      )
+//        console.log(res) 
+//        console.log(res.data[0].family) 
+        this.setState({ people: res.data[0].family })
+//this.setState({ people: res.data, name: "", birthday: "" })
+    )
       .catch(err => console.log(err));
   };
 
