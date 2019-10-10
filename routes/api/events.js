@@ -1,5 +1,9 @@
 const router = require("express").Router();
 const eventController = require("../../controllers/eventController");
+const userController = require("../../controllers/userController");
+// Matches with "/api/events/saved"
+router.route("/saved")
+  .get(userController.getsavedevents);
 
 // Matches with "/api/events/toggle"
 router.route("/toggle")

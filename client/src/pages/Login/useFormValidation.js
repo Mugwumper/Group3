@@ -105,10 +105,17 @@ function Contact_formvalidation(initialState, validate) {
      values.password = "1234567";
      setSubmitting(true);
   }
+  function test2() {
+    //console.log("test1");
+     values.email = 'b2@b.com';
+     values.password = "1234567";
+     setSubmitting(true);
+  }
 
   return {
     handleSubmit,
     test1,
+    test2,
     handleChange,
     handleBlur,
     errors,

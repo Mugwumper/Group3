@@ -39,7 +39,7 @@ export default {
     return axios.put("/api/events/toggle", event);
   },
   getEvents: function () {
-    return axios.get("/api/events/issaved");
+    return axios.get("/api/events/saved");
   },
   getAnswerKey: function() {
     return axios.get("/api/events/answerkey");

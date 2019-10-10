@@ -15,6 +15,7 @@ function Contact(props) {
   const {
     handleSubmit,
     test1,
+    test2,
     handleChange,
     handleBlur,
     errors,
@@ -69,7 +70,8 @@ function Contact(props) {
                 Submit
               </FormBtn>
             </div>
-            <button type="button" onClick={test1}>test1</button>
+            <button type="button" onClick={test1}>login "a1@b.com"</button>
+            <button type="button" onClick={test2}>login "b2@b.com"</button>
           </form>
         </Col>
       </Row>

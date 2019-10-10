@@ -1,7 +1,7 @@
 const db = require("../models");
 const ObjectId = require('mongodb').ObjectID;
 
-var currentUserId = "5d98c9ab073a76c86a562654";
+currentUserId = "5d98c9ab073a76c86a562654";
 
 module.exports = {
   findByEmail: function(req, res) {
@@ -32,16 +32,39 @@ module.exports = {
       db.Users
       .find({ _id: ObjectId(currentUserId) }, 
         'family events isSaved title summary link name birthday')
-      .then(dbModel => res.json(dbModel))
-      //.then(dbModel => this.clearRes(dbModel))
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
+    } else {
+      res = "unable to function without defined currectUserId";
+    }
+  },
+  getsavedevents: function(req, res) {
+    console.log("userController.getuserplus called");
+    if (currentUserId) {
+      db.Users
+      .find({ _id: ObjectId(currentUserId) }, 
+        'family events isSaved title summary link name birthday')
+      .then(function (doc) {
+        var savedEvents = [];
+        // get the first (only) element of the array
+        doc[0].family.map(person => (
+          // for each family member...
+          person.events.map(event  => 
+            // for each event...
+            {            
+              // keep only saved events
+              if (event.isSaved) savedEvents.push(event);
+            }
+          )
+        ));
+        res.json(savedEvents);
+      })
       .catch(err => res.status(422).json(err))
     } else {
       res = "unable to function without defined currectUserId";
     }
-  }
+  }  
 }
 
-function cleanRes(res) {
-  return json(res);  
-}
+
 
