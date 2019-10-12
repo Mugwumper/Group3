@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 //import EventsCull from "./pages/EventsCull";
 import Family from "./pages/Family";
-//import ReportAnswerKey from "./pages/ReportAnswerKey";
+import ReportAnswerKey from "./pages/ReportAnswerKey";
 //import ReportHandout from "./pages/ReportHandout";
 //import Detail from "./pages/Detail";
 //import NoMatch from "./pages/NoMatch";
@@ -40,9 +40,9 @@ function App() {
           <Route path="/family" component={Family} /> */}
           <Route exact path="/add" component={Family} />
           {/* <FamilyReview />
-          <EventsCull />
-          <ReportAnswerKey />
-          <ReportHandout /> */}
+          <EventsCull /> */}
+          <Route exact path="/reportanswerkey" component={ReportAnswerKey} />
+          {/* <ReportHandout /> */}
         </div>
       </div>
     </Router>    
