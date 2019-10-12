@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const familyController = require("../../controllers/familyController");
 const scrapeController = require("../../controllers/scrapeController");
+const scrapeControllerNYT = require("../../controllers/scrapeControllerNYT");
 const userController = require("../../controllers/userController");
 
 // Matches with "/api/family"
@@ -18,20 +19,16 @@ router
 // Matches with "/api/family/scrape"
 router
   .route("/scrape")
-  .post(scrapeController.scraper);
+//  .post(scrapeController.scraper);
+  .post(scrapeControllerNYT.scraper);
 
 // Matches with "/api/family/login"
-router
+router // dead?
   .route("/login")
   .post(userController.findByEmail);
 
-// Matches with "/api/family/newuser"
-router
-  .route("/newuser")
-  .post(userController.create);
-router
-  .route("/setuser")
-  .post(userController.setuser);
-
-
+router 
+  .route("/getfamily")
+  .post(familyController.getFamily);
+  
 module.exports = router;

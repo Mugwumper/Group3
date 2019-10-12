@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all family members
-  getFamily: function() {
-    return axios.get("/api/family");
+  getFamily: function(userEmail) {
+    return axios.post("/api/family/getfamily", userEmail);
   },
   // Gets the familymember with the given id
   getFamilyMember: function(id) {
@@ -20,7 +20,7 @@ export default {
   login: function(userData) {
     console.log("API sees login...");
     console.log(userData); 
-    return axios.post("/api/family/login", userData);
+    return axios.post("/api/user/login", userData);
   },
   setUser: function(userData) {
     console.log("API sees setUser...");
@@ -28,7 +28,7 @@ export default {
     return axios.post("/api/family/setuser", userData);
   },
   newUser: function(userData) {
-    return axios.post("/api/family/newuser", userData);
+    return axios.post("/api/user/new", userData);
   },
   scrapeFamily: function(familyList) {
     return axios.post("/api/family/scrape", familyList);
@@ -44,8 +44,8 @@ export default {
   getAnswerKey: function() {
     return axios.get("/api/events/answerkey");
   },
-  getUserPlus: function() {
-    return axios.get("/api/users/getuserplus");
+  getUserPlus: function(userEmail) {
+    return axios.post("/api/user/getuserplus");
   }
   
 

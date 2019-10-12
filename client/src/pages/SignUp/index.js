@@ -4,34 +4,29 @@ import validateAuth from "./validateAuth";
 import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import {signin} from "../../firebase";
-//import API from "../../utils/API";
+import {fb, createuser} from "../../firebase";
+import API from "../../utils/API";
+import "./style.css";
 import { NavLink } from 'react-router-dom';
 
-//import { BrowserRouter as Router, Route } from "react-router-dom";
-//import FamilyAdd from "../../pages/FamilyAdd";
-import "./style.css";
 
 const INITIAL_STATE = {
   email: "",
   password: ""
 };
- 
-const test1 = () => {
-  signInUser(null, "a1@b.com", "1234567");
-}
-const test2 = () => {
-  signInUser(null, "b2@b.com", "1234567");
-}
 
-
-const signInUser = (e, email, password) => {
-  if (e) e.preventDefault();
-  signin(email, password).then(
-
-    // navigate to the next screen
+const createUser = (e, email, password) => {
+  e.preventDefault();
+  createuser(email, password).then(
+    API.NewUser({
+      email: fb.auth().user.email
+    }).then(res => {
+      console.log(res.data);
+      // use router to get us to the next screen
+    })
   );
 };
+
 
 function Contact(props) {
   const {
@@ -47,7 +42,7 @@ function Contact(props) {
       <Row>
         <Col size="md-6">
           <Jumbotron>
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
           </Jumbotron>
           <form>
             <Input
@@ -85,22 +80,12 @@ function Contact(props) {
               {errors.password ? <p>{errors.password}</p> : <p>{"\u00A0"}</p>}
             </div>
             <div>
-              <FormBtn
-                onClick={e => signInUser(e, values.email, values.password)}
-                disabled={cantSub}
-                type="submit"
-              >
+              <FormBtn onClick={(e) => createUser(e, values.email, values.password)}  disabled={cantSub} type="submit">
                 Submit
               </FormBtn>
             </div>
-            <button type="button" onClick={test1}>
-              login "a1@b.com"
-            </button>
-            <button type="button" onClick={test2}>
-              login "b2@b.com"
-            </button>
           </form>
-          <NavLink to="/signup">Sign Up</NavLink>
+          <NavLink to="/login">Login</NavLink>
         </Col>
       </Row>
     </Container>

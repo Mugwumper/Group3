@@ -5,7 +5,6 @@ module.exports = {
   findAll: function(req, res) {
     db.Family
       .find(req.query)
-      .populate("events")
       .sort({ birthday: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -34,5 +33,14 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  getFamily: function(req, res) {
+    console.log("familyController.getFamily called");
+    console.log(req.body.email);
+    db.Users
+      .find({ email: req.body.email }, 
+            'family name birthday')
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   }
 };
