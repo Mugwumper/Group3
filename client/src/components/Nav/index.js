@@ -1,4 +1,7 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
+
+import { fb } from "../../firebase";
 
 function Nav() {
   return (
@@ -6,6 +9,14 @@ function Nav() {
       <a className="navbar-brand" href="/">
         Family Reunion Helper
       </a>
+      <NavLink to="/signup">Sign Up</NavLink>
+      <NavLink to="/login">Login</NavLink>
+      <NavLink to="/add">Family</NavLink>
+      <NavLink to="/reportanswerkey">Report</NavLink>
+
+      <button className="navbar-bandaid" onClick={() => fb.auth().signOut()}>
+        logout
+      </button>
     </nav>
   );
 }

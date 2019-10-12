@@ -4,10 +4,11 @@ import API from "../../utils/API";
 //import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { EList, EListItem } from "../../components/EventList";
+import {fb} from "../../firebase";
 import "./style.css";
 
 
-class Report1 extends Component {
+class EventCull extends Component {
   state = {
     people: []
   };
@@ -17,11 +18,13 @@ class Report1 extends Component {
   }
 
   loadFamily = () => {
-    API.getUserPlus()
-      .then(res =>
-        this.setState({ people: res.data[0].family })
-    )
-      .catch(err => console.log(err));
+    // API.getUserPlus({
+    //   email: fb.auth().user.email
+    // })
+    //   .then(res =>
+    //     this.setState({ people: res.data[0].family })
+    // )
+    //   .catch(err => console.log(err));
   };
 
   toggleIsSaved = eventItem => {
@@ -80,4 +83,4 @@ class Report1 extends Component {
   }
 }
 
-export default Report1;
+export default EventCull;

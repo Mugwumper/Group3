@@ -1,6 +1,5 @@
 import React from "react";
 import API from "../../utils/API";
-import { fb } from "../../firebase";
 
 // this was taken from https://www.youtube.com/watch?v=8yo44xN7-nQ
 // the version here is improved upon with regard to handling errors
@@ -35,11 +34,9 @@ function Contact_formvalidation(initialState, validate) {
     }
   }, [errors, isSubmitting, cantSub, values.password, values.email]);
 
-  function sendUserToServer() { /// dead?
-    console.log(fb.auth().user);
+  function sendUserToServer() {
     API.login({
-      
-      email: fb.auth().user.email,
+      email: values.email,
       password: values.password
     })
       .then(res => {
@@ -62,7 +59,7 @@ function Contact_formvalidation(initialState, validate) {
           // res is not null and no error was returned...
           if (res.data[0].password === values.password) {
             console.log("valid");
-            //API.setUser({id: res.data[0]._id});
+            API.setUser({id: res.data[0]._id});
             // use router to get us to the next screen
           } else {
             console.log(

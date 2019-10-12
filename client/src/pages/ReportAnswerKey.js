@@ -11,10 +11,20 @@ class ReportAnswerKey extends Component {
   };
 
   componentDidMount() {
-    this.loadFamilyAndEvents();
+//    this.loadFamilyAndEvents();
+    this.loadFamily();
   }
 
-  loadFamilyAndEvents = () => {
+  loadFamily = () => {
+    API.getUserPlus()
+      .then(res =>
+        this.setState({ people: res.data[0].family })
+    )
+      .catch(err => console.log(err));
+  };
+
+
+  loadFamilyAndEvents = () => { // dead?
     API.getAnswerKey()
       .then(res => this.setState({ people: res.data, name: "", birthday: "" }))
       .catch(err => console.log(err));
