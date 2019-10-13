@@ -16,6 +16,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log("familyController.create called");
+    console.log(req.body);
     db.Family
       .create(req.body)
       .then(dbModel => res.json(dbModel))

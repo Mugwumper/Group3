@@ -27,8 +27,8 @@ export default {
     console.log(userData); 
     return axios.post("/api/family/setuser", userData);
   },
-  newUser: function(userData) {
-    return axios.post("/api/user/new", userData);
+  newUser: function(userEmail) {
+    return axios.post("/api/user/new", userEmail);
   },
   scrapeFamily: function(familyList) {
     return axios.post("/api/family/scrape", familyList);
@@ -38,14 +38,14 @@ export default {
     //console.log(event);
     return axios.put("/api/events/toggle", event);
   },
-  getEvents: function () {
-    return axios.get("/api/events/saved");
+  getEvents: function (userEmail) {
+    return axios.post("/api/events/saved", userEmail);
   },
   getAnswerKey: function() {
     return axios.get("/api/events/answerkey");
   },
   getUserPlus: function(userEmail) {
-    return axios.post("/api/user/getuserplus");
+    return axios.post("/api/user/getuserplus", userEmail);
   }
   
 

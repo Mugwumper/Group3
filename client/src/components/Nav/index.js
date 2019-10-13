@@ -12,7 +12,9 @@ function Nav() {
       <NavLink to="/signup">Sign Up</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/add">Family</NavLink>
-      <NavLink to="/reportanswerkey">Report</NavLink>
+      <NavLink to="/cull">Cull Events</NavLink>
+      <NavLink to="/reportanswerkey">Report Answer Key</NavLink>
+      <NavLink to="/reporthandout">Report Handout</NavLink>
 
       <button className="navbar-bandaid" onClick={() => fb.auth().signOut()}>
         logout

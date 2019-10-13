@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-//import EventsCull from "./pages/EventsCull";
+import EventsCull from "./pages/EventsCull";
 import Family from "./pages/Family";
 import ReportAnswerKey from "./pages/ReportAnswerKey";
-//import ReportHandout from "./pages/ReportHandout";
+import ReportHandout from "./pages/ReportHandout";
 //import Detail from "./pages/Detail";
 //import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -39,10 +39,10 @@ function App() {
           {/* <Route exact path="/" component={Family} />
           <Route path="/family" component={Family} /> */}
           <Route exact path="/add" component={Family} />
-          {/* <FamilyReview />
-          <EventsCull /> */}
+          {/* <FamilyReview /> */}
+          <Route extract path="/cull" component={EventsCull} /> 
           <Route exact path="/reportanswerkey" component={ReportAnswerKey} />
-          {/* <ReportHandout /> */}
+          <Route exact path="/reporthandout" component={ReportHandout} />
         </div>
       </div>
     </Router>    

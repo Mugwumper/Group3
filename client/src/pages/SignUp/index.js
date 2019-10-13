@@ -9,7 +9,6 @@ import API from "../../utils/API";
 import "./style.css";
 import { NavLink } from 'react-router-dom';
 
-
 const INITIAL_STATE = {
   email: "",
   password: ""
@@ -18,8 +17,8 @@ const INITIAL_STATE = {
 const createUser = (e, email, password) => {
   e.preventDefault();
   createuser(email, password).then(
-    API.NewUser({
-      email: fb.auth().user.email
+    API.newUser({
+      email: email
     }).then(res => {
       console.log(res.data);
       // use router to get us to the next screen
