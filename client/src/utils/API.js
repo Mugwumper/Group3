@@ -10,10 +10,10 @@ export default {
     return axios.get("/api/family/" + id);
   },
   // Deletes the book with the given id
-  deleteFamily: function(id) {
-    return axios.delete("/api/family/" + id);
+  deleteFamily: function(familyData) {
+    return axios.post("/api/family/delete", familyData);
   },
-  // Saves a book to the database
+
   saveFamily: function(familyData) {
     return axios.post("/api/family", familyData);
   },

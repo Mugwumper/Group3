@@ -31,4 +31,9 @@ router
   .route("/getfamily")
   .post(familyController.getFamily);
   
+// Matches with "/api/family/delete"
+router 
+.route("/delete")
+.post(familyController.delete);
+
 module.exports = router;

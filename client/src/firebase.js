@@ -17,7 +17,7 @@ require('firebase/auth');
   // Initialize Firebase
 export const fb = firebase.initializeApp(firebaseConfig);
 
-console.log(fb.auth());
+//console.log(fb.auth());
 
 export const createuser = (email, password) => {
     return fb.auth().createUserWithEmailAndPassword(email, password)

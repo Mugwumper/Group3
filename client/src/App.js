@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import {fb} from "./firebase";
 
 export let userEmail = "";
+export const AuthContext = React.createContext(null);
 
 function App() {
   const [isLogged, setIsLogged] = React.useState(false);
@@ -28,24 +29,27 @@ function App() {
         userEmail = "";
       }
     });
-  });
+  }, [isLogged]); // not sure [isLogged] is needed  here
   return (
-    <Router>
-      <div>
-        <Nav />
-        <div className="page__content-container">
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Login} />          
-          {/* <Route exact path="/" component={Family} />
-          <Route path="/family" component={Family} /> */}
-          <Route exact path="/add" component={Family} />
-          {/* <FamilyReview /> */}
-          <Route extract path="/cull" component={EventsCull} /> 
-          <Route exact path="/reportanswerkey" component={ReportAnswerKey} />
-          <Route exact path="/reporthandout" component={ReportHandout} />
+    <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+    
+      <Router>
+        <div>
+          <Nav />
+          <div className="page__content-container">
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={Login} />          
+            {/* <Route exact path="/" component={Family} />
+            <Route path="/family" component={Family} /> */}
+            <Route exact path="/add" component={Family} />
+            {/* <FamilyReview /> */}
+            <Route extract path="/cull" component={EventsCull} /> 
+            <Route exact path="/reportanswerkey" component={ReportAnswerKey} />
+            <Route exact path="/reporthandout" component={ReportHandout} />
+          </div>
         </div>
-      </div>
-    </Router>    
+      </Router> 
+    </AuthContext.Provider>    
   );
 } 
 
