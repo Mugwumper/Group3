@@ -30,8 +30,8 @@ export default {
   newUser: function(userEmail) {
     return axios.post("/api/user/new", userEmail);
   },
-  scrapeFamily: function(familyList) {
-    return axios.post("/api/family/scrape", familyList);
+  scrapeFamily: function(userEmail) {
+    return axios.post("/api/family/scrape", userEmail);
   },
   toggleIsSaved: function(event) {
     //console.log("API sees toggleIsSaved");

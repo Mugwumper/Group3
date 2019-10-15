@@ -19,5 +19,4 @@ var Users = mongoose.model("Users", UserSchema);
 
 module.exports = Users; //export the Family model
 
-
 module.exports = mongoose.model('Users', UserSchema);
