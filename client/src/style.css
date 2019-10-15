@@ -29,3 +29,7 @@ h1 {
     background: rgb(240, 230, 226);
     font-weight: normal;
 }
+
+.collectEvents {
+    width: 100%;
+}

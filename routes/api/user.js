@@ -6,7 +6,7 @@ router
   .route("/getuserplus")
   .post(userController.getuserplus);
 
-// Matches with "/api/user/newuser"
+// Matches with "/api/user/new"
 router
   .route("/new")
   .post(userController.create);

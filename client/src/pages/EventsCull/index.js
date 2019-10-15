@@ -14,17 +14,17 @@ class EventCull extends Component {
   };
 
   componentDidMount() {
-    this.loadFamily();
+    if (fb.auth().currentUser) this.loadFamily();
   }
 
   loadFamily = () => {
-    // API.getUserPlus({
-    //   email: fb.auth().user.email
-    // })
-    //   .then(res =>
-    //     this.setState({ people: res.data[0].family })
-    // )
-    //   .catch(err => console.log(err));
+    API.getUserPlus({
+      email: fb.auth().currentUser.providerData[0].email
+    })
+      .then(res =>
+        this.setState({ people: res.data[0].family })
+    )
+      .catch(err => console.log(err));
   };
 
   toggleIsSaved = eventItem => {

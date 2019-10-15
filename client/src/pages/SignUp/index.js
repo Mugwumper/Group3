@@ -4,11 +4,10 @@ import validateAuth from "./validateAuth";
 import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import {fb, createuser} from "../../firebase";
+import {createuser} from "../../firebase";
 import API from "../../utils/API";
 import "./style.css";
 import { NavLink } from 'react-router-dom';
-
 
 const INITIAL_STATE = {
   email: "",
@@ -18,8 +17,8 @@ const INITIAL_STATE = {
 const createUser = (e, email, password) => {
   e.preventDefault();
   createuser(email, password).then(
-    API.NewUser({
-      email: fb.auth().user.email
+    API.newUser({
+      email: email
     }).then(res => {
       console.log(res.data);
       // use router to get us to the next screen

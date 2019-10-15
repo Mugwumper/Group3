@@ -6,7 +6,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import {signin} from "../../firebase";
 //import API from "../../utils/API";
-import { NavLink } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
 
 //import { BrowserRouter as Router, Route } from "react-router-dom";
 //import FamilyAdd from "../../pages/FamilyAdd";
@@ -28,8 +28,8 @@ const test2 = () => {
 const signInUser = (e, email, password) => {
   if (e) e.preventDefault();
   signin(email, password).then(
-
     // navigate to the next screen
+    
   );
 };
 

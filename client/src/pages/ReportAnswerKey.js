@@ -3,6 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
 import { EList, EListItem } from "../components/EventList";
 import API from "../utils/API";
+import {fb} from "../firebase";
 import "../style.css";
 
 class ReportAnswerKey extends Component {
@@ -11,13 +12,14 @@ class ReportAnswerKey extends Component {
   };
 
   componentDidMount() {
-//    this.loadFamilyAndEvents();
-    this.loadFamily();
+    if (fb.auth().currentUser) this.loadFamily();
   }
 
   loadFamily = () => {
-    API.getUserPlus()
-      .then(res =>
+    API.getUserPlus({
+      email: fb.auth().currentUser.providerData[0].email
+    })
+    .then(res =>
         this.setState({ people: res.data[0].family })
     )
       .catch(err => console.log(err));

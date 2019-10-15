@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
-import {userEmail} from "../../App";
+import { userEmail } from "../../App";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
-import {fb} from "../../firebase";
-
+import { fb } from "../../firebase";
 
 class FamilyAdd extends Component {
   state = {
@@ -16,6 +15,8 @@ class FamilyAdd extends Component {
     name: "",
     birthday: ""
   };
+
+  //TODO this uses both userEmail and the 'fb...email' pick one!
 
   componentDidMount() {
     console.log("componentDidMount for family page called..");
@@ -26,17 +27,18 @@ class FamilyAdd extends Component {
   loadFamily = () => {
     API.getFamily({ email: fb.auth().currentUser.providerData[0].email })
       .then(res =>
-        //console.log(res)
-        //console.log(res.data[0].family) 
         this.setState({ people: res.data[0].family })
       )
       .catch(err => console.log(err));
   };
 
   deleteFamily = id => {
-    API.deleteFamily(id)
-      .then(res => this.loadFamily())
-      .catch(err => console.log(err));
+    API.deleteFamily({ 
+      email: fb.auth().currentUser.providerData[0].email,
+      id: id    
+    })
+    .then(res => this.loadFamily())
+    .catch(err => console.log(err));
   };
 
   collectEvents = event => {
@@ -45,6 +47,7 @@ class FamilyAdd extends Component {
     .then(res => this.loadFamily())
     .catch(err => console.log(err));
   };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -56,6 +59,7 @@ class FamilyAdd extends Component {
     event.preventDefault();
     if (this.state.name && this.state.birthday) {
       API.saveFamily({
+        userEmail: fb.auth().currentUser.providerData[0].email,
         name: this.state.name,
         birthday: this.state.birthday
       })
@@ -83,11 +87,6 @@ class FamilyAdd extends Component {
                 name="birthday"
                 placeholder="Birthday in ISO 8601 date format (required)"
               />
-              {/* <TextArea
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              /> */}
               <FormBtn
                 disabled={!(this.state.name && this.state.birthday)}
                 onClick={this.handleFormSubmit}
@@ -95,35 +94,36 @@ class FamilyAdd extends Component {
                 Add Family Member
               </FormBtn>
             </form>
-
-            <form onSubmit={this.collectEvents}>
-              {this.state.people.length ? (
-                <List>
-                  {this.state.people.map(person => (
-                    <ListItem key={person._id}>
-                      <Link to={"/family/" + person._id}>
-                        <strong>
-                          {person.name} - {person.birthday}
-                        </strong>
-                      </Link>
-                      <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-              <div style={getStyle_CollectEventsButton}>
-                <FormBtn 
-                  //disbled={this.state.people.length === 0}
-                  disbled="false"
-                  type="submit" 
-                >
-                  Collect Events
-                </FormBtn>
-              </div>
-            </form>
-
+            <hr></hr>
+            <div className="collectEvents">
+              <form onSubmit={this.collectEvents}>
+                {this.state.people.length ? (
+                  <List>
+                    {this.state.people.map(person => (
+                      <ListItem key={person._id}>
+                        <Link to={"/family/" + person._id}>
+                          <strong>
+                            {person.name} - {person.birthday}
+                          </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
+                <div style={getStyle_CollectEventsButton}>
+                  <FormBtn 
+                    //disbled={this.state.people.length === 0}
+                    disbled="false"
+                    type="submit" 
+                  >
+                    Collect Events
+                  </FormBtn>
+                </div>
+              </form>
+            </div>
           </Col>
         </Row>
       </Container>

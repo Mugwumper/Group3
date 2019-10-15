@@ -1,22 +1,27 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-
 import { fb } from "../../firebase";
+import { AuthContext } from "../../App";
 
 function Nav() {
+  //let isLogged = fb.auth().currentUser.providerData[0].email
+  //const isLogged = (userEmail !== "");
+  const isLogged = React.useContext(AuthContext).isLogged;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info">
       <a className="navbar-brand" href="/">
         Family Reunion Helper
-      </a>
-      <NavLink to="/signup">Sign Up</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/add">Family</NavLink>
-      <NavLink to="/reportanswerkey">Report</NavLink>
+      </a>  
+      {isLogged ? null :  <NavLink to="/signup">Sign Up</NavLink> }
+      {isLogged ? null :  <NavLink to="/login">Login</NavLink> }
 
-      <button className="navbar-bandaid" onClick={() => fb.auth().signOut()}>
-        logout
-      </button>
+      <NavLink to="/add">Family</NavLink>
+      <NavLink to="/cull">Cull Events</NavLink>
+      <NavLink to="/reportanswerkey">Report Answer Key</NavLink>
+      <NavLink to="/reporthandout">Report Handout</NavLink>
+
+      {isLogged ? <button className="navbar-bandaid" onClick={() => fb.auth().signOut()}> logout</button>
+        :  null }
     </nav>
   );
 }
