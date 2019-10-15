@@ -4,8 +4,6 @@ import { fb } from "../../firebase";
 import { AuthContext } from "../../App";
 
 function Nav() {
-  //let isLogged = fb.auth().currentUser.providerData[0].email
-  //const isLogged = (userEmail !== "");
   const isLogged = React.useContext(AuthContext).isLogged;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info">
@@ -20,7 +18,10 @@ function Nav() {
       <NavLink to="/reportanswerkey">Report Answer Key</NavLink>
       <NavLink to="/reporthandout">Report Handout</NavLink>
 
-      {isLogged ? <button className="navbar-bandaid" onClick={() => fb.auth().signOut()}> logout</button>
+      {isLogged ? <button className="navbar-bandaid" onClick={
+        () => fb.auth().signOut()
+        //href="login"
+      }> logout</button>
         :  null }
     </nav>
   );

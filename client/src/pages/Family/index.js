@@ -43,7 +43,9 @@ class FamilyAdd extends Component {
 
   collectEvents = event => {
     event.preventDefault();
-    API.scrapeFamily()
+    API.scrapeFamily({
+      email: fb.auth().currentUser.providerData[0].email
+    })
     .then(res => this.loadFamily())
     .catch(err => console.log(err));
   };

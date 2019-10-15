@@ -29,7 +29,7 @@ const signInUser = (e, email, password) => {
   if (e) e.preventDefault();
   signin(email, password).then(
     // navigate to the next screen
-    
+    //redirect"/add"
   );
 };
 
