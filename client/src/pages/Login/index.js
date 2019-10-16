@@ -1,10 +1,11 @@
 import React from "react";
+//import { withRouter } from "react-router-dom";
 import useFormvalidation from "./useFormValidation";
 import validateAuth from "./validateAuth";
 import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import {signin} from "../../firebase";
+import {fb, signin} from "../../firebase";
 //import API from "../../utils/API";
 import { NavLink  } from 'react-router-dom';
 
@@ -17,23 +18,27 @@ const INITIAL_STATE = {
   password: ""
 };
  
-const test1 = () => {
-  signInUser(null, "a1@b.com", "1234567");
-}
-const test2 = () => {
-  signInUser(null, "b2@b.com", "1234567");
-}
 
 
-const signInUser = (e, email, password) => {
-  if (e) e.preventDefault();
-  signin(email, password).then(
-    // navigate to the next screen
-    //redirect"/add"
-  );
-};
+
 
 function Contact(props) {
+  const signInUser = (e, email, password) => {
+    if (e) e.preventDefault();
+    signin(email, password)
+    .then(res => { 
+      ///if user is logged in...
+      const isLogg =  (fb.auth().currentUser.providerData[0].email);
+      if (isLogg) props.history.push('/add');
+    });
+  };
+  const test1 = () => {
+    signInUser(null, "a1@b.com", "1234567");
+  }
+  const test2 = () => {
+    signInUser(null, "b2@b.com", "1234567");
+  }
+
   const {
     handleChange,
     handleBlur,

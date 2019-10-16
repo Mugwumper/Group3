@@ -18,11 +18,12 @@ function Nav() {
       <NavLink to="/reportanswerkey">Report Answer Key</NavLink>
       <NavLink to="/reporthandout">Report Handout</NavLink>
 
-      {isLogged ? <button className="navbar-bandaid" onClick={
-        () => fb.auth().signOut()
-        //href="login"
-      }> logout</button>
-        :  null }
+      {isLogged ? 
+        <button className="navbar-bandaid" onClick={
+          () => fb.auth().signOut()
+        }> logout</button>
+        :  null 
+      }
     </nav>
   );
 }

@@ -65,7 +65,10 @@ class FamilyAdd extends Component {
         name: this.state.name,
         birthday: this.state.birthday
       })
-        .then(res => this.loadFamily())
+        .then(res => {
+          this.loadFamily();
+          this.collectEvents();
+        })
         .catch(err => console.log(err));
     }
   };
