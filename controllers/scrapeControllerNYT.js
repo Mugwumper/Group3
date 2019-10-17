@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 const db = require("../models");
 // const request = require("request");
 // const cheerio = require("cheerio");
@@ -17,18 +18,21 @@ module.exports = {
   scraper:  function queryFam(req, res) {
     db.Users.find({ email: req.body.email }, 'family name birthday')
     .then(data => {
-      console.log("this happens" + JSON.stringify(data[0].family));
-      var promises = data[0].family.map(item => {
-
-        return scrape(item).then(results => {
-          return results;
-        });
+      var promises = data[0].family.map(familyMember => {
+        //console.log(familyMember);
+        //if (!familyMember.events) {
+        if (!familyMember.events[0]) { 
+          console.log(familyMember.name +" - has yet to be scrapped");
+          return scrape(familyMember).then(results => {
+            return results;
+          });
+        } else {
+          console.log(familyMember.name +" - has already been scrapped");
+        }
       });
       Promise.all(promises).then(results => res.json(results));
       })
     .catch(err => console.log(err));
-
-
   },
 
   scraperX: function queryFam(req, res) {
@@ -49,11 +53,70 @@ module.exports = {
 };
 
 function scrape(item) {
-  //console.log("I promise...");
+  console.log("function scrape called...");
   return new Promise((resolve, reject) => {
     //console.log("item = " + item);
-    const url = buildQueryURL(item);
+    const queryURL = buildQueryURL(item);
 
+    fetch(queryURL)
+    .then(response => response.json())
+    .then(data => {
+        saveEvents(data);
+    });
+
+    function saveEvents(NYTData) {
+      // Log the NYTData to console, where it will show up as an object
+      //console.log("saveEvents: " + NYTData);
+      //console.log("------------------------------------");
+      const scrapeArray = [];
+      // API doesn't have a "limit" parameter, so we have to do this ourselves
+      var maxEventCount = 10;
+      // Loop through and build elements for the defined number of articles
+      for (var i = 0; i < maxEventCount; i++) {
+        // Get specific article info for current index
+        var article = NYTData.response.docs[i];
+        // TITLE
+        var title = "";
+        if (article.headline && article.headline.main) {
+          title = article.headline.main;
+        }
+        // SUMMARY
+        var summary = "";
+        if (article.byline && article.byline.original) {
+          summary = article.byline.original;
+        }
+        // LINK
+        var link = article.web_url;
+        if (title) {
+          console.log("title exists, we are saving this event..");
+          // set up the dbEvent object
+          var result = {};
+          result.FamMem = item._id;
+          result.birthday = item.birthday;
+          result.title = title;
+          result.summary = summary;
+          result.link = link;
+          scrapeArray.push(result);
+          db.Events.create(result)
+          .then(function(dbEvent) {
+            db.Family.findOneAndUpdate(
+              { _id: item._id },
+              { $push: { events: dbEvent._id } }
+            )
+            .then(function(dbFam) {
+                //console.log(dbFam);
+              })
+            .catch(function(err) {
+              console.log(err);
+            });
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+        }
+      }
+    }
+    
     ///////////////////////////////////////////
 
     // request("https://www.nytimes.com/", function(error, response, html) {
@@ -118,14 +181,11 @@ function buildQueryURL(item) {
   console.log("searching for " + item.name + " - " + item.birthday);
   queryParams.begin_date = item.birthday.replace(new RegExp("-", 'g'), "");
   queryParams.end_date = item.birthday.replace(new RegExp("-", 'g'), "");
-  // Logging the URL so we have access to it for troubleshooting
-
-  // console.log("---------------\nURL: " + queryURL + "\n---------------");
-  // console.log(queryURL + $.param(queryParams));
 
   const URLparams = new URLSearchParams(Object.entries(queryParams));
   URLparams.toString();
 
+  // Logging the URL so we have access to it for troubleshooting
   console.log(queryURL + URLparams);
 
   return queryURL + URLparams;

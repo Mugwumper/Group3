@@ -1,24 +1,44 @@
 .navbar {
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 44px;
+    height: 44px; */
     z-index: 10;
     -webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
     box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
 }
 
+.Nav_link {
+    color: rgba(255,255,255,0.5);
+    /* vertical-align: middle; */
+    display: block;
+    padding: 8px;
+}
+.Nav_link:hover {
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+}
+.Nav_link_drop {
+    margin-left: 15px;
+    color: rgba(60, 89, 219, 0.5);
+}
+.Nav_link_drop:hover {
+    text-decoration: none;
+    color: rgba(34, 19, 165, 0.7);
+}
+
+
 .page__content-container {
-    margin-top: 44px;
+    margin-top: 10px;
     width: 100%;
-    padding: 5px;
+    padding: 1px;
   }
 
-h1 {
+/* h1 {
     
-}
+} */
 
 .event-saved {
     /* background: rgb(227, 243, 227); */

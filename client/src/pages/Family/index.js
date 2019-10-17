@@ -65,7 +65,10 @@ class FamilyAdd extends Component {
         name: this.state.name,
         birthday: this.state.birthday
       })
-        .then(res => this.loadFamily())
+        .then(res => {
+          this.loadFamily();
+          this.collectEvents();
+        })
         .catch(err => console.log(err));
     }
   };
@@ -74,7 +77,7 @@ class FamilyAdd extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
               <h1>Add Family Members</h1>
             </Jumbotron>

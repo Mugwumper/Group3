@@ -39,7 +39,7 @@ class EventCull extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6 sm-12">
+          <Col size="md-12 sm-12">
             <Jumbotron>              
               <h1>Cull Events</h1>
               <p>Select events to include</p>

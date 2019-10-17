@@ -37,8 +37,8 @@ export const createuser = (email, password) => {
 export const signin = (email, password) => {
     return fb.auth().signInWithEmailAndPassword(email, password)
     .then(res => {
-        console.log(res);
-        console.log(fb.auth().currentUser.providerData[0].email);
+      console.log(res);        
+      console.log(fb.auth().currentUser.providerData[0].email);
 
         //var user = firebase.auth().currentUser;
         // if (user != null) {
@@ -54,8 +54,9 @@ export const signin = (email, password) => {
     .catch(function(error) {
         // Handle Errors here.
         // var errorCode = error.code;
-        // var errorMessage = error.message;
-        console.log(error);
+        var errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
       });
 }  
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { fb } from "../../firebase";
 import { AuthContext } from "../../App";
 
@@ -7,22 +7,68 @@ function Nav() {
   const isLogged = React.useContext(AuthContext).isLogged;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-      <a className="navbar-brand" href="/">
+      <a className="navbar-brand" href="/add">
         Family Reunion Helper
-      </a>  
-      {isLogged ? null :  <NavLink to="/signup">Sign Up</NavLink> }
-      {isLogged ? null :  <NavLink to="/login">Login</NavLink> }
-
-      <NavLink to="/add">Family</NavLink>
-      <NavLink to="/cull">Cull Events</NavLink>
-      <NavLink to="/reportanswerkey">Report Answer Key</NavLink>
-      <NavLink to="/reporthandout">Report Handout</NavLink>
-
-      {isLogged ? <button className="navbar-bandaid" onClick={
-        () => fb.auth().signOut()
-        //href="login"
-      }> logout</button>
-        :  null }
+      </a>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            {isLogged ? null : <NavLink className="Nav_link" to="/signup">Sign Up</NavLink>}
+          </li>
+          <li className="nav-item">
+            {isLogged ? null : <NavLink className="Nav_link" to="/login">Login</NavLink>}
+          </li>
+          <li className="nav-item">
+            <NavLink className="Nav_link" to="/add">Family</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="Nav_link" to="/cull">Cull Events</NavLink>
+          </li>
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Reports
+            </a>
+            <div
+              className="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <NavLink className="Nav_link_drop" to="/reportanswerkey">Report Answer Key</NavLink>
+              <br></br>
+              <NavLink className="Nav_link_drop" to="/reporthandout">Report Handout</NavLink>
+            </div>
+          </li>
+          {isLogged ? (
+            <form className="form-inline">
+              <button
+                className="btn btn-sm btn-outline-secondary"
+                type="button"
+                onClick={() => fb.auth().signOut()}
+              >
+                {" "}
+                Sign out
+              </button>
+            </form>
+          ) : null}
+        </ul>
+      </div>
     </nav>
   );
 }
