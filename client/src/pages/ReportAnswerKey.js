@@ -15,6 +15,7 @@ class ReportAnswerKey extends Component {
     if (fb.auth().currentUser) this.loadFamily();
   }
 
+  
   loadFamily = () => {
     API.getUserPlus({
       email: fb.auth().currentUser.providerData[0].email
