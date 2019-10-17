@@ -36,7 +36,7 @@ class ReportAnswerKey extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6 sm-12">
+          <Col size="md-12 sm-12">
             <Jumbotron>
               <h1>Answer Key</h1>
             </Jumbotron>

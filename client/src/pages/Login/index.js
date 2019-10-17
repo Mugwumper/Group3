@@ -50,7 +50,7 @@ function Contact(props) {
   return (
     <Container fluid>
       <Row>
-        <Col size="md-6">
+        <Col size="md-12">
           <Jumbotron>
             <h1>Login</h1>
           </Jumbotron>
