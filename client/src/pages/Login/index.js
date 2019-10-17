@@ -33,10 +33,10 @@ function Contact(props) {
     });
   };
   const test1 = () => {
-    signInUser(null, "a1@b.com", "1234567");
+    signInUser(null, "crystal@bell.com", "1234567");
   }
   const test2 = () => {
-    signInUser(null, "b2@b.com", "1234567");
+    signInUser(null, "migelrodregiz12@yahoo.com", "1234567");
   }
 
   const {
@@ -99,10 +99,10 @@ function Contact(props) {
               </FormBtn>
             </div>
             <button type="button" onClick={test1}>
-              login "a1@b.com"
+              login "crystal"
             </button>
             <button type="button" onClick={test2}>
-              login "b2@b.com"
+              login "migel"
             </button>
           </form>
           <NavLink to="/signup">Sign Up</NavLink>

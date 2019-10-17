@@ -24,3 +24,16 @@ export function EListItem({ children }) {
 }
 
 
+export function RList({ children }) {
+  return (
+    <div className="list-group">
+      <div className="list-group-item-action active">{children}</div>
+    </div>
+  );
+}
+
+export function RListItem({ children }) {
+  return <div className="list-group-item list-group-item-action">{children}</div>;
+}
+
+

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import { EList, EListItem } from "../components/EventList";
+import { RList, RListItem } from "../components/EventList";
 import API from "../utils/API";
 import {fb} from "../firebase";
 import "../style.css";
@@ -14,6 +14,7 @@ class ReportAnswerKey extends Component {
   componentDidMount() {
     if (fb.auth().currentUser) this.loadFamily();
   }
+
 
   loadFamily = () => {
     API.getUserPlus({
@@ -41,25 +42,25 @@ class ReportAnswerKey extends Component {
               <h1>Answer Key</h1>
             </Jumbotron>
             {this.state.people.length ? (
-              <EList>
+              <RList>
                 {this.state.people.map(person => (
-                  <EListItem key={person._id}>
+                  <RListItem key={person._id}>
                     <strong>
                       {person.name} - {person.birthday}
                     </strong>
-                    <EList>
+                    <RList>
                       {person.events.map(event => (
                         event.isSaved ? 
-                        <EListItem key={event._id}>
+                        <RListItem key={event._id}>
                           <div className="event-saved">
                             {event.title} - {event.summary}
                           </div>
-                        </EListItem> : null
+                        </RListItem> : null
                       ))}
-                    </EList>
-                  </EListItem>
+                    </RList>
+                  </RListItem>
                 ))}
-              </EList>
+              </RList>
             ) : (
               <h3>No Results to Display</h3>
             )}
