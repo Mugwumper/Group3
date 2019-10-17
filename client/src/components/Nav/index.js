@@ -6,7 +6,7 @@ import { AuthContext } from "../../App";
 function Nav() {
   const isLogged = React.useContext(AuthContext).isLogged;
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-info">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
       <a className="navbar-brand" href="/add">
         Family Reunion Helper
       </a>

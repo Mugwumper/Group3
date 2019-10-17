@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import { EList, EListItem } from "../components/EventList";
+import { RList, RListItem } from "../components/EventList";
 import API from "../utils/API";
 import {fb} from "../firebase";
 import "../style.css";
@@ -32,15 +32,15 @@ class ReportHandout extends Component {
               <h1>Something To Talk About</h1>
             </Jumbotron>
             {this.state.events.length ? (
-                <EList>
+                <RList>
                     {this.state.events.map(event => (
-                    <EListItem key={event._id}>
-                        <div className="event-saved">
+                    <RListItem key={event._id}>
+                        <a style={getStyle_link}  className="event-saved" href={event.link} >
                         {event.title} - {event.summary}
-                        </div>
-                    </EListItem>
+                        </a>
+                    </RListItem>
                     ))}
-                </EList>
+                </RList>
             ) : (
               <h3>No Results to Display</h3>
             )}
@@ -50,5 +50,20 @@ class ReportHandout extends Component {
     );
   }
 }
+
+
+
+const getStyle_link = {
+  color: "black",
+  }
+
+const getStyle_visited = {
+    color: "black",
+  }
+
+const getStyle_hover = {
+    color: "rgba(34, 19, 165, 0.7)",
+  }
+
 
 export default ReportHandout;

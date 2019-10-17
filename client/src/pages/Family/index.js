@@ -8,6 +8,7 @@ import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import { fb } from "../../firebase";
+import "./style.css";
 
 class FamilyAdd extends Component {
   state = {
@@ -99,18 +100,16 @@ class FamilyAdd extends Component {
                 Add Family Member
               </FormBtn>
             </form>
-            <hr></hr>
+            <br></br><br></br><br></br>
             <div className="collectEvents">
               <form onSubmit={this.collectEvents}>
                 {this.state.people.length ? (
                   <List>
                     {this.state.people.map(person => (
                       <ListItem key={person._id}>
-                        <Link to={"/family/" + person._id}>
                           <strong>
                             {person.name} - {person.birthday}
                           </strong>
-                        </Link>
                         <DeleteBtn onClick={() => this.deleteFamily(person._id)} />
                       </ListItem>
                     ))}
