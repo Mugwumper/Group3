@@ -32,7 +32,6 @@ function App() {
   }, [isLogged]); // not sure [isLogged] is needed  here
   return (
     <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-    
       <Router>
         <div>
           <Nav />
