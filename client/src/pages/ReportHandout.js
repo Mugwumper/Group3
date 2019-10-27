@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import { RList, RListItem } from "../components/EventList";
+import { RList, RListItem } from "../components/List";
 import API from "../utils/API";
 import {fb} from "../firebase";
 import "../style.css";
@@ -35,7 +35,7 @@ class ReportHandout extends Component {
                 <RList>
                     {this.state.events.map(event => (
                     <RListItem key={event._id}>
-                        <a style={getStyle_link}  className="event-saved" href={event.link} >
+                        <a style={getStyle_link}  className="event-saved" href={event.link}  target="_blank">
                         {event.title} - {event.summary}
                         </a>
                     </RListItem>

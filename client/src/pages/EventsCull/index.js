@@ -3,8 +3,8 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 //import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
-import { EList, EListItem } from "../../components/EventList";
-import {fb} from "../../firebase";
+import { EList, EListItem } from "../../components/List";
+import { fb } from "../../firebase";
 import "./style.css";
 
 

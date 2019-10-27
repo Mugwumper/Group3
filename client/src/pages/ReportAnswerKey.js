@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Col, Row, Container } from "../components/Grid";
-import { RList, RListItem } from "../components/EventList";
+import { RList, RListItem } from "../components/List";
 import API from "../utils/API";
 import {fb} from "../firebase";
 import "../style.css";
