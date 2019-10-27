@@ -9,7 +9,7 @@ import ReportHandout from "./pages/ReportHandout";
 //import Detail from "./pages/Detail";
 //import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import {fb} from "./firebase";
+import { fb } from "./firebase";
 
 export let userEmail = "";
 export const AuthContext = React.createContext(null);
@@ -29,10 +29,9 @@ function App() {
         userEmail = "";
       }
     });
-  }, [isLogged]); // not sure [isLogged] is needed  here
+  }, []); 
   return (
     <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-    
       <Router>
         <div>
           <Nav />
