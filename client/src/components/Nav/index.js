@@ -5,11 +5,7 @@ import { AuthContext } from "../../App";
 
 function Nav() {
   const isLogged = React.useContext(AuthContext).isLogged;
-  let localsetIsLogged = React.useContext(AuthContext).setIsLogged;
-  function  doClick() {
-    console.log("button clicked");
-    localsetIsLogged(!isLogged);
-  }
+  // let localsetIsLogged = React.useContext(AuthContext).setIsLogged;
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
       <a className="navbar-brand" href="/add">
@@ -39,9 +35,6 @@ function Nav() {
           </li>
           <li className="nav-item">
             <NavLink className="Nav_link" to="/cull">Cull Events</NavLink>
-          </li>
-          <li>
-            <button button type="button" onClick={doClick}>temp</button>
           </li>
           <li className="nav-item dropdown">
             <a

@@ -35,7 +35,7 @@ class ReportHandout extends Component {
                 <RList>
                     {this.state.events.map(event => (
                     <RListItem key={event._id}>
-                        <a style={getStyle_link}  className="event-saved" href={event.link}  target="_blank">
+                        <a style={getStyle_link}  className="event-saved" href={event.link}  target="_blank" rel="noopener noreferrer">
                         {event.title} - {event.summary}
                         </a>
                     </RListItem>
@@ -57,13 +57,13 @@ const getStyle_link = {
   color: "black",
   }
 
-const getStyle_visited = {
-    color: "black",
-  }
+// const getStyle_visited = {
+//     color: "black",
+//   }
 
-const getStyle_hover = {
-    color: "rgba(34, 19, 165, 0.7)",
-  }
+// const getStyle_hover = {
+//     color: "rgba(34, 19, 165, 0.7)",
+//   }
 
 
 export default ReportHandout;
