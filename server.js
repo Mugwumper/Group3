@@ -27,7 +27,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
+
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/familyreunion",
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_62dv840c:mongodman1@ds335678.mlab.com:35678/heroku_62dv840c",
 { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true,
   useFindAndModify: false }
 );
