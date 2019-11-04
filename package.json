@@ -17,24 +17,24 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.2",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.4"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt-nodejs": "0.0.3",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "firebase": "^7.2.0",
+    "firebase": "^7.2.3",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "npm-update-all": "^1.0.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "react-router-dom": "^5.1.0",
+    "react-router-dom": "^5.1.2",
     "request": "^2.88.0"
   }
 }
