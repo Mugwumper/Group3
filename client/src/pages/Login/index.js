@@ -36,7 +36,7 @@ function Contact(props) {
     signInUser(null, "crystal@bell.com", "1234567");
   }
   const test2 = () => {
-    signInUser(null, "migelrodregiz12@yahoo.com", "1234567");
+    signInUser(null, "wwovno@sfsd.com", "1234567");
   }
 
   const {
@@ -102,7 +102,7 @@ function Contact(props) {
               login "crystal"
             </button>
             <button type="button" onClick={test2}>
-              login "migel"
+              login "wwovno@sfsd.com"
             </button>
           </form>
           <NavLink to="/signup">Sign Up</NavLink>
