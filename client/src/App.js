@@ -38,10 +38,7 @@ function App() {
           <div className="page__content-container">
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={Login} />          
-            {/* <Route exact path="/" component={Family} />
-            <Route path="/family" component={Family} /> */}
             <Route exact path="/add" component={Family} />
-            {/* <FamilyReview /> */}
             <Route extract path="/cull" component={EventsCull} /> 
             <Route exact path="/reportanswerkey" component={ReportAnswerKey} />
             <Route exact path="/reporthandout" component={ReportHandout} />

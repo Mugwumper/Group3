@@ -28,7 +28,7 @@ class EventCull extends Component {
   };
 
   toggleIsSaved = eventItem => {
-    console.log("eventItem");
+    //console.log("eventItem");
     eventItem.isSaved = !eventItem.isSaved;
     API.toggleIsSaved(eventItem)
       .then(res => this.loadFamily())
