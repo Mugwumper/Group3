@@ -6,8 +6,6 @@ import EventsCull from "./pages/EventsCull";
 import Family from "./pages/Family";
 import ReportAnswerKey from "./pages/ReportAnswerKey";
 import ReportHandout from "./pages/ReportHandout";
-//import Detail from "./pages/Detail";
-//import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { fb } from "./firebase";
 

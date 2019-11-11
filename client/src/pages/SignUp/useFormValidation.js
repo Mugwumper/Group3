@@ -72,8 +72,6 @@ function Contact_formvalidation(initialState, validate) {
       .catch(err => console.log(err));
   }
 
-
-
   function handleChange(event) {
     setValues({
       ...values,
