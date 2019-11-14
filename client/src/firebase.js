@@ -14,10 +14,8 @@ require('firebase/auth');
     appId: "1:169387949450:web:5826302c59bd3deef51c73"
   };
 
-  // Initialize Firebase
+// Initialize Firebase
 export const fb = firebase.initializeApp(firebaseConfig);
-
-//console.log(fb.auth());
 
 export const createuser = (email, password) => {
     return fb.auth().createUserWithEmailAndPassword(email, password)
