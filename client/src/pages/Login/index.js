@@ -5,7 +5,7 @@ import validateAuth from "./validateAuth";
 import { Input, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import {fb, signin} from "../../firebase";
+import {fb, signin} from "../../utils/firebase";
 //import API from "../../utils/API";
 import { NavLink  } from 'react-router-dom';
 
