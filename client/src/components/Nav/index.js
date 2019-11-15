@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { fb } from "../../firebase";
+import { fb } from "../../utils/firebase";
 import { AuthContext } from "../../App";
 
 function Nav() {

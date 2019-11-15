@@ -6,9 +6,8 @@ import { userEmail } from "../../App";
 import { List, ListItem } from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
-import { fb } from "../../firebase";
+import { fb } from "../../utils/firebase";
 import { AuthContext } from "../../App";
-
 import "./style.css";
 
 const INITIAL_STATE = {
@@ -28,6 +27,12 @@ function FamilyAdd() {
     if (userEmail) loadFamily();
   }, [values.name, values.birthday]);
 
+
+  React.useEffect(() => {
+    console.log("new useEffect called");
+    if (userEmail) loadFamily();
+  }, [localIsLogged]);
+
   function loadFamily() {
     console.log("loadFamily called");
     API.getFamily({ email: fb.auth().currentUser.providerData[0].email })
@@ -39,7 +44,6 @@ function FamilyAdd() {
       )
       .catch(err => console.log(err));
   };
-
 
   function deleteFamily(id) {
     API.deleteFamily({ 

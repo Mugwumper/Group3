@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-import { fb } from "../../firebase";
+import { fb } from "../../utils/firebase";
 
 // this was taken from https://www.youtube.com/watch?v=8yo44xN7-nQ
 // the version here is improved upon with regard to handling errors

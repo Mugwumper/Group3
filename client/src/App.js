@@ -7,7 +7,7 @@ import Family from "./pages/Family";
 import ReportAnswerKey from "./pages/ReportAnswerKey";
 import ReportHandout from "./pages/ReportHandout";
 import Nav from "./components/Nav";
-import { fb } from "./firebase";
+import { fb } from "./utils/firebase";
 
 export let userEmail = "";
 export const AuthContext = React.createContext(null);
